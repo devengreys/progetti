@@ -2,6 +2,7 @@
     Dim Risultato As Double
     Dim Segno As String
 
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Risultato = 0
@@ -42,6 +43,7 @@
         Button15.Size = New Size(130, 50) '=
 
         TextBox1.Size = New Size(210, 20)
+
 
         ' localizzazione Bottoni
 
@@ -108,85 +110,101 @@
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        If Segno = "Risultato" Then
-            TextBox1.Text = ""
-            Segno = "+"
-        Else
-
-            Segno = "+"
-            If Risultato = 0 Then
-                Risultato = CDbl(TextBox1.Text)
+        Try
+            If Segno = "Risultato" Then
+                TextBox1.Text = ""
+                Segno = "+"
             Else
-                Risultato = Risultato + CDbl(TextBox1.Text)
-            End If
-            TextBox1.Text = ""
-        End If
 
+                Segno = "+"
+                If Risultato = 0 Then
+                    Risultato = CDbl(TextBox1.Text)
+                Else
+                    Risultato = Risultato + CDbl(TextBox1.Text)
+                End If
+                TextBox1.Text = ""
+            End If
+        Catch ex As Exception
+            MsgBox("operazione impossibile")
+        End Try
 
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
-        If Segno = "Risultato" Then
-            TextBox1.Text = ""
-            Segno = "-"
-        Else
-
-            Segno = "-"
-            If Risultato = 0 Then
-                Risultato = CDbl(TextBox1.Text)
+        Try
+            If Segno = "Risultato" Then
+                TextBox1.Text = ""
+                Segno = "-"
             Else
-                Risultato = Risultato - CDbl(TextBox1.Text)
+
+                Segno = "-"
+                If Risultato = 0 Then
+                    Risultato = CDbl(TextBox1.Text)
+                Else
+                    Risultato = Risultato - CDbl(TextBox1.Text)
+                End If
+                TextBox1.Text = ""
             End If
-            TextBox1.Text = ""
-        End If
+        Catch ex As Exception
+            MsgBox("operazione impossibile")
+        End Try
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
-        If Segno = "Risultato" Then
-            TextBox1.Text = ""
-            Segno = "*"
-        Else
-
-            Segno = "*"
-            If Risultato = 0 Then
-                Risultato = CDbl(TextBox1.Text)
+        Try
+            If Segno = "Risultato" Then
+                TextBox1.Text = ""
+                Segno = "*"
             Else
-                Risultato = Risultato * CDbl(TextBox1.Text)
+
+                Segno = "*"
+                If Risultato = 0 Then
+                    Risultato = CDbl(TextBox1.Text)
+                Else
+                    Risultato = Risultato * CDbl(TextBox1.Text)
+                End If
+                TextBox1.Text = ""
             End If
-            TextBox1.Text = ""
-        End If
+        Catch ex As Exception
+            MsgBox("operazione impossibile")
+        End Try
     End Sub
 
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
-        If Segno = "Risultato" Then
-            TextBox1.Text = ""
-            Segno = ":"
-        Else
-
-            Segno = ":"
-            If Risultato = 0 Then
-                Risultato = CDbl(TextBox1.Text)
+        Try
+            If Segno = "Risultato" Then
+                TextBox1.Text = ""
+                Segno = ":"
             Else
-                Risultato = Risultato / CDbl(TextBox1.Text)
+
+                Segno = ":"
+                If Risultato = 0 Then
+                    Risultato = CDbl(TextBox1.Text)
+                Else
+                    Risultato = Risultato / CDbl(TextBox1.Text)
+                End If
+                TextBox1.Text = ""
             End If
-            TextBox1.Text = ""
-        End If
+        Catch ex As Exception
+            MsgBox("operazione impossibile")
+        End Try
     End Sub
 
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
-        If Segno = "+" Then
-            Risultato = Risultato + CDbl(TextBox1.Text)
-        ElseIf Segno = "-" Then
-            Risultato = Risultato - CDbl(TextBox1.Text)
-        ElseIf Segno = "*" Then
-            Risultato = Risultato * CDbl(TextBox1.Text)
-        ElseIf Segno = ":" Then
-            Risultato = Risultato / CDbl(TextBox1.Text)
-        End If
-        Segno = "Risultato"
-        TextBox1.Text = Risultato
-
-
-
+        Try
+            If Segno = "+" Then
+                Risultato = Risultato + CDbl(TextBox1.Text)
+            ElseIf Segno = "-" Then
+                Risultato = Risultato - CDbl(TextBox1.Text)
+            ElseIf Segno = "*" Then
+                Risultato = Risultato * CDbl(TextBox1.Text)
+            ElseIf Segno = ":" Then
+                Risultato = Risultato / CDbl(TextBox1.Text)
+            End If
+            Segno = "Risultato"
+            TextBox1.Text = Risultato
+        Catch ex As Exception
+            MsgBox("operazione impossibile")
+        End Try
     End Sub
 End Class
