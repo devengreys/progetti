@@ -1,0 +1,36 @@
+https://www.youtube.com/watch?v=xofpqdU3cD4
+
+create function get_total_order()
+returns int
+language plpgsql
+as
+$$
+declare
+   totale integer;
+begin
+   select count(*) 
+   into totale
+   from ordini;
+   
+   return totale;
+end;
+$$;
+
+/---------------------
+
+select get_total_order();
+
+-------------------------
+
+public int GETALLORDER() throws SQLException {
+		String url = "jdbc:postgresql://localhost:5432/postgres";
+		String uname = "postgres";
+		String pass = "admin";
+		Connection con = DriverManager.getConnection(url, uname, pass);
+		CallableStatement cstmt = con.prepareCall("{? = CALL get_total_order()}");
+		cstmt.registerOutParameter(1, Types.INTEGER);
+		cstmt.executeUpdate();
+		int rs = cstmt.getInt(1);
+		System.out.println(rs);
+		return rs;
+	}
