@@ -34,3 +34,43 @@ public int GETALLORDER() throws SQLException {
 		System.out.println(rs);
 		return rs;
 	}
+
+-------------------------------
+EXCEPTION    
+WHEN NO_DATA_FOUND THEN       
+DBMS_OUTPUT.PUT_LINE('La fattura: ' || v_num || ' non e'' stata registrata'); 
+
+-----------------------------
+
+do $$
+DECLARE
+ciao Integer;
+begin 
+ciao := 5;
+raise notice 'value %', ciao;
+end;
+$$
+
+-------------------------------
+
+
+
+do $$
+DECLARE
+	ciao Integer;
+	c_id public."Customers".id%type;
+	c_addr public."Customers".address%type;
+	c_name public."Customers"."Name"%type;
+	 c_customers CURSOR for
+		SELECT id, "Name", address FROM public."Customers";
+BEGIN
+
+	OPEN c_customers;
+	LOOP
+	FETCH c_customers into c_id, c_name, c_addr;
+		exit when not found;
+		raise notice 'Value c_id : %, value c_name : %, value c_addr : %', c_id, c_name, c_addr;
+	END LOOP;
+	CLOSE c_customers;
+END;
+$$;
