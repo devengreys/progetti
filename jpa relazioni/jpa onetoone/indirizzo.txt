@@ -1,0 +1,78 @@
+package com.mestesso.JPA_DEMO;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Indirizzo
+ *
+ */
+@Entity
+@Table(name = "indirizzo")
+public class Indirizzo implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition = "serial")
+	private int id;
+	private String via;
+	private String città;
+	private int numero;
+
+	@OneToOne(mappedBy = "indirizzo")
+	private Cavallo cavallo;
+	public Indirizzo() {
+		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getVia() {
+		return via;
+	}
+
+	public void setVia(String via) {
+		this.via = via;
+	}
+
+	public String getCittà() {
+		return città;
+	}
+
+	public void setCittà(String città) {
+		this.città = città;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	
+	
+	public Cavallo getCavallo() {
+		return cavallo;
+	}
+
+	public void setCavallo(Cavallo cavallo) {
+		this.cavallo = cavallo;
+	}
+
+	@Override
+	public String toString() {
+		return "Indirizzo [id=" + id + ", via=" + via + ", città=" + città + ", numero=" + numero + "]";
+	}
+	
+	
+	
+	
+}
