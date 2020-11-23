@@ -1,0 +1,20 @@
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+      
+    	EntityManager em = emf.createEntityManager();
+    	
+    	em.getTransaction().begin();
+    	
+    	TypedQuery<Indirizzo> query = em.createQuery("SELECT i FROM Indirizzo i", Indirizzo.class);
+//    	EntityGraph<Indirizzo> entityGraph = em.createEntityGraph(Indirizzo.class);
+//    	entityGraph.addAttributeNodes("via");
+//    	entityGraph.addAttributeNodes("citta");
+    	EntityGraph<Indirizzo> eg = (EntityGraph<Indirizzo>) em.getEntityGraph("IndirizzoEntityGraph");
+    	query.setHint("javax.persistence.fetchgraph", eg);
+    	List<Indirizzo> indirizzi = query.getResultList();
+    	
+    	for(Indirizzo i : indirizzi) {
+    		System.out.println(i.getUtente().getId());
+    	}
+    	em.getTransaction().commit();
+    	em.close();
+        emf.close();
